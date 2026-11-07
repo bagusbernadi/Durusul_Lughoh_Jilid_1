@@ -13,9 +13,13 @@ Aplikasi web satu-file (`index.html`) untuk membantu belajar **دروس اللغ
 - Opsi menyembunyikan harakat, mengatur ukuran huruf, dan reset progres
 - Progres tersimpan di browser (localStorage), tanpa server dan tanpa dependensi
 
+## Alamat (GitHub Pages)
+https://bagusbernadi.github.io/Durusul_Lughoh_Jilid_1/
+
+> Alamat ini aktif setelah GitHub Pages diaktifkan: Settings → Pages → Source: *Deploy from a branch* → branch `main`, folder `/ (root)`. Tunggu ±1–2 menit setelah disimpan.
+
 ## Cara pakai
-Buka `index.html` di browser. Tidak perlu build atau instalasi.
-Opsional: aktifkan GitHub Pages (Settings → Pages → branch `main`, folder `/`) untuk membukanya lewat tautan web.
+Buka alamat di atas, atau buka `index.html` langsung di browser. Tidak perlu build atau instalasi.
 
 ## Catatan
 - Kosakata dan kalimat diambil dari buku; harakat dan terjemahan Indonesia disusun untuk keperluan belajar dan belum diperiksa pengajar. Periksa kembali kata yang meragukan.
