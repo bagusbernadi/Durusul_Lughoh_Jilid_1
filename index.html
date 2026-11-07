@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Durusul Lughoh Jilid 1 — Aplikasi Belajar</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap">
+<style>
+:root{--bg:#f7f3ea;--card:#fffdf8;--ink:#23211c;--mut:#6f6a5d;--line:#e4ddcc;--g:#1f6b4f;--g2:#e3f1ea;--r:#b3402e;--r2:#fbe9e5;--y:#c58a12;--y2:#fdf3d9;--rad:14px}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.ar{font-family:"Amiri","Noto Naskh Arabic","Scheherazade New","Traditional Arabic",serif;direction:rtl;unicode-bidi:isolate}
+header{position:sticky;top:0;z-index:5;background:var(--g);color:#fff;padding:10px 16px;display:flex;align-items:center;gap:10px}
+header h1{white-space:nowrap;font-size:16px;margin:0;flex:1;font-weight:600}
+header .ar{font-size:22px;font-weight:700}
+header button{background:rgba(255,255,255,.15);color:#fff;border:0;border-radius:8px;padding:6px 10px;font-size:14px;cursor:pointer}
+main{max-width:760px;margin:0 auto;padding:16px 14px 80px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--rad);padding:14px 16px;margin-bottom:12px}
+.btn{display:inline-block;background:var(--g);color:#fff;border:0;border-radius:10px;padding:10px 16px;font-size:15px;cursor:pointer;font-weight:600}
+.btn.sec{background:var(--g2);color:var(--g)}
+.btn.warn{background:var(--r2);color:var(--r)}
+.btn:disabled{opacity:.5}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.lc{cursor:pointer;display:block;text-decoration:none;color:inherit;padding:12px}
+.lc:hover{border-color:var(--g)}
+.lc .n{font-size:12px;color:var(--mut)}
+.lc .ar{font-size:26px;line-height:1.4;text-align:right}
+.lc .t{font-size:13px;color:var(--mut)}
+.bar{height:6px;background:var(--line);border-radius:4px;overflow:hidden;margin-top:6px}
+.bar i{display:block;height:100%;background:var(--g)}
+.tabs{display:flex;gap:6px;margin:6px 0 14px;overflow-x:auto}
+.tabs a{padding:8px 14px;border-radius:999px;background:var(--card);border:1px solid var(--line);text-decoration:none;color:var(--ink);font-size:14px;white-space:nowrap}
+.tabs a.on{background:var(--g);color:#fff;border-color:var(--g)}
+h2{font-size:20px;margin:4px 0 8px}
+h3{font-size:15px;margin:14px 0 6px;color:var(--g)}
+.note{white-space:pre-line;font-size:15px}
+.wl{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--line)}
+.wl:last-child{border:0}
+.wl .ar{font-size:26px;min-width:40%;text-align:right;cursor:pointer;flex:0 0 auto}
+.wl .m{flex:1;font-size:15px}
+.dot{width:10px;height:10px;border-radius:50%;background:var(--line);flex:0 0 auto}
+.dot.b1{background:var(--y)}.dot.b2{background:#8aae3a}.dot.b3,.dot.b4{background:var(--g)}
+.hide .m{visibility:hidden}
+.hide .m:active{visibility:visible}
+.sent{padding:10px 0;border-bottom:1px solid var(--line)}
+.sent:last-child{border:0}
+.sent .ar{font-size:24px;line-height:1.9;cursor:pointer}
+.sent .m{color:var(--mut);font-size:14px}
+.fc{min-height:230px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;cursor:pointer;user-select:none}
+.fc .ar{font-size:54px;line-height:1.5}
+.fc .m{font-size:22px;font-weight:600;color:var(--g)}
+.hint{color:var(--mut);font-size:13px}
+.opts{display:grid;gap:8px;margin-top:12px}
+.opt{background:var(--card);border:1.5px solid var(--line);border-radius:12px;padding:12px;font-size:17px;cursor:pointer;text-align:center}
+.opt.ar{font-size:26px}
+.opt.ok{background:var(--g2);border-color:var(--g)}
+.opt.no{background:var(--r2);border-color:var(--r)}
+.q{font-size:30px;text-align:center;margin:8px 0}
+.q.id{font-size:22px;font-family:inherit;direction:ltr}
+.stat{display:flex;gap:10px;margin-bottom:12px}
+.stat div{flex:1;text-align:center;background:var(--card);border:1px solid var(--line);border-radius:var(--rad);padding:10px}
+.stat b{font-size:22px;display:block;color:var(--g)}
+.stat span{font-size:12px;color:var(--mut)}
+input[type=search]{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:10px;font-size:15px;background:var(--card)}
+.set{display:flex;justify-content:space-between;align-items:center;padding:8px 0}
+.mx{font-family:"Amiri","Noto Naskh Arabic","Scheherazade New",serif;font-size:1.25em;unicode-bidi:isolate;line-height:1.6}
+.credit{font-size:12px;color:var(--mut);text-align:center;margin-top:20px}
+@media(max-width:520px){header>.ar{display:none}}
+@media(min-width:600px){.fc .ar{font-size:64px}}
+</style>
+</head>
+<body>
+<header><span class="ar">دروس اللغة العربية</span><h1>Durusul Lughoh 1</h1><button id="hb">⌂ Beranda</button><button id="sb">⚙</button></header>
+<main id="app"></main>
+
+<script>
+/* ===== DATA: 23 pelajaran (kosakata & kalimat dari buku; terjemah Indonesia disusun untuk belajar) ===== */
+const L=[
+{t:'هَذَا',s:'Ini (dekat) • Apa/Siapa ini?',note:'Pola dasar:\n• مَا هَذَا؟ = Apa ini?  → هَذَا بَيْتٌ. = Ini rumah.\n• أَ + هَذَا ...؟ = pertanyaan ya/tidak. Jawab: نَعَمْ (ya) / لَا (tidak).\n• مَنْ هَذَا؟ = Siapa ini? (untuk manusia).\nKata benda tak tentu (nakirah) berakhiran tanwin: بَيْتٌ، قَلَمٌ، كِتَابٌ.',
+v:[['بَيْتٌ','rumah'],['بَابٌ','pintu'],['مَسْجِدٌ','masjid'],['مِفْتَاحٌ','kunci'],['قَلَمٌ','pena'],['كِتَابٌ','buku'],['كُرْسِيٌّ','kursi'],['سَرِيرٌ','tempat tidur'],['مَكْتَبٌ','meja tulis'],['قَمِيصٌ','kemeja'],['نَجْمٌ','bintang'],['وَلَدٌ','anak laki-laki'],['طَبِيبٌ','dokter'],['طَالِبٌ','pelajar'],['رَجُلٌ','laki-laki dewasa'],['تَاجِرٌ','pedagang'],['كَلْبٌ','anjing'],['قِطٌّ','kucing'],['حِمَارٌ','keledai'],['حِصَانٌ','kuda'],['جَمَلٌ','unta'],['دِيكٌ','ayam jantan'],['مُدَرِّسٌ','guru'],['مِنْدِيلٌ','saputangan'],['مَا','apa'],['مَنْ','siapa'],['نَعَمْ','ya'],['لَا','tidak']],
+x:[['مَا هَذَا؟ هَذَا بَيْتٌ.','Apa ini? Ini rumah.'],['أَهَذَا سَرِيرٌ؟ لَا، هَذَا كُرْسِيٌّ.','Apakah ini tempat tidur? Bukan, ini kursi.'],['أَهَذَا مِفْتَاحٌ؟ لَا، هَذَا قَلَمٌ.','Apakah ini kunci? Bukan, ini pena.'],['مَنْ هَذَا؟ هَذَا طَبِيبٌ.','Siapa ini? Ini seorang dokter.'],['أَهَذَا وَلَدٌ؟ لَا، هَذَا رَجُلٌ.','Apakah ini anak laki-laki? Bukan, ini laki-laki dewasa.']]},
+{t:'ذَلِكَ',s:'Itu (jauh)',note:'ذَلِكَ = itu (untuk benda/orang jauh, mudzakkar).\nContoh: هَذَا مَسْجِدٌ وَذَلِكَ بَيْتٌ. (Ini masjid dan itu rumah.)\nPertanyaan: مَا ذَلِكَ؟ = Apa itu?',
+v:[['ذَلِكَ','itu (jauh)'],['إِمَامٌ','imam'],['حَجَرٌ','batu'],['سُكَّرٌ','gula'],['لَبَنٌ','susu']],
+x:[['مَا ذَلِكَ؟ ذَلِكَ نَجْمٌ.','Apa itu? Itu bintang.'],['هَذَا مَسْجِدٌ وَذَلِكَ بَيْتٌ.','Ini masjid dan itu rumah.'],['أَذَلِكَ كَلْبٌ؟ لَا، ذَلِكَ قِطٌّ.','Apakah itu anjing? Bukan, itu kucing.'],['هَذَا سُكَّرٌ وَذَلِكَ لَبَنٌ.','Ini gula dan itu susu.'],['مَنْ هَذَا وَمَنْ ذَلِكَ؟ هَذَا مُدَرِّسٌ وَذَلِكَ إِمَامٌ.','Siapa ini dan siapa itu? Ini guru dan itu imam.']]},
+{t:'الـ + صِفَة',s:'Kalimat nominal: mubtada’ + khabar',note:'Kata benda + ال = tertentu (ma‘rifah): الْكِتَابُ.\nKalimat nominal: الْكِتَابُ جَدِيدٌ. = Buku itu baru. (ال+benda di depan, sifat bertanwin di belakang)\n\nHuruf Qamariyah (ال dibaca jelas): أ ب ج ح خ ع غ ف ق ك م و هـ ي\nHuruf Syamsiyah (ل pada ال melebur): ت ث د ذ ر ز س ش ص ض ط ظ ل ن\nContoh: الْقَمَرُ (qamariyah) vs الشَّمْسُ (syamsiyah).',
+v:[['جَدِيدٌ','baru'],['قَدِيمٌ','lama'],['مَكْسُورٌ','rusak / patah'],['مَفْتُوحٌ','terbuka'],['جَالِسٌ','sedang duduk'],['وَاقِفٌ','sedang berdiri'],['صَغِيرٌ','kecil'],['كَبِيرٌ','besar'],['بَارِدٌ','dingin'],['حَارٌّ','panas'],['قَرِيبٌ','dekat'],['بَعِيدٌ','jauh'],['جَمِيلٌ','indah'],['ثَقِيلٌ','berat'],['خَفِيفٌ','ringan'],['وَسِخٌ','kotor'],['نَظِيفٌ','bersih'],['لَذِيذٌ','lezat'],['غَنِيٌّ','kaya'],['فَقِيرٌ','miskin'],['حُلْوٌ','manis'],['مَرِيضٌ','sakit'],['طَوِيلٌ','tinggi / panjang'],['قَصِيرٌ','pendek'],['مَاءٌ','air'],['قَمَرٌ','bulan'],['وَرَقٌ','kertas'],['دُكَّانٌ','toko'],['تُفَّاحٌ','apel']],
+x:[['الْكِتَابُ جَدِيدٌ وَالْقَلَمُ قَدِيمٌ.','Bukunya baru dan penanya lama.'],['الْقَلَمُ مَكْسُورٌ.','Penanya patah.'],['الْبَابُ مَفْتُوحٌ.','Pintunya terbuka.'],['الْوَلَدُ جَالِسٌ، وَالْمُدَرِّسُ وَاقِفٌ.','Anak itu duduk dan guru berdiri.'],['الْبَيْتُ قَرِيبٌ وَالْمَسْجِدُ بَعِيدٌ.','Rumahnya dekat dan masjidnya jauh.'],['اللَّبَنُ بَارِدٌ.','Susunya dingin.']]},
+{t:'فِي • عَلَى • مِنْ • إِلَى',s:'Huruf jar & kata tanya أَيْنَ',note:'Huruf jar (حروف الجر): فِي (di dalam), عَلَى (di atas), مِنْ (dari), إِلَى (ke).\nKata benda setelah huruf jar berharakat kasrah: فِي الْبَيْتِ، عَلَى الْمَكْتَبِ، مِنَ الْبَيْتِ، إِلَى الْمَسْجِدِ.\nأَيْنَ = di mana? — مِنْ أَيْنَ أَنْتَ؟ = Kamu dari mana?\nهُوَ = dia (lk), هِيَ = dia (pr).',
+v:[['فِي','di (dalam)'],['عَلَى','di atas'],['مِنْ','dari'],['إِلَى','ke'],['أَيْنَ','di mana'],['هُوَ','dia (laki-laki)'],['هِيَ','dia (perempuan)'],['غُرْفَةٌ','kamar'],['حَمَّامٌ','kamar mandi'],['مَطْبَخٌ','dapur'],['سَاعَةٌ','jam'],['مَدْرَسَةٌ','sekolah'],['فَصْلٌ','kelas'],['جَامِعَةٌ','universitas'],['مِرْحَاضٌ','toilet'],['سُوقٌ','pasar'],['مُدِيرٌ','direktur / kepala'],['ذَهَبَ','(dia lk) pergi'],['خَرَجَ','(dia lk) keluar'],['الْيَابَانُ','Jepang'],['الصِّينُ','Cina'],['الْهِنْدُ','India'],['الْفِلِبِّينُ','Filipina']],
+x:[['أَيْنَ مُحَمَّدٌ؟ هُوَ فِي الْغُرْفَةِ.','Di mana Muhammad? Dia di kamar.'],['أَيْنَ آمِنَةُ؟ هِيَ فِي الْمَطْبَخِ.','Di mana Aminah? Dia di dapur.'],['الْكِتَابُ عَلَى الْمَكْتَبِ.','Bukunya di atas meja.'],['مِنْ أَيْنَ أَنْتَ؟ أَنَا مِنَ الْيَابَانِ.','Kamu dari mana? Saya dari Jepang.'],['ذَهَبَ مُحَمَّدٌ إِلَى الْمُدِيرِ.','Muhammad pergi menemui direktur.'],['خَرَجَ الطَّالِبُ مِنَ الْمَدْرَسَةِ وَذَهَبَ إِلَى السُّوقِ.','Pelajar itu keluar dari sekolah dan pergi ke pasar.']]},
+{t:'الْإِضَافَة • يَا',s:'Idhafah (kata benda + kata benda) & panggilan',note:'Idhafah: dua kata benda berurutan. Kata pertama (mudhaf) tanpa tanwin & tanpa ال; kata kedua (mudhaf ilaih) berharakat kasrah.\nكِتَابُ مُحَمَّدٍ = buku Muhammad. حَقِيبَةُ الْمُدَرِّسِ = tas guru.\nPanggilan dengan يَا: يَا عَلِيُّ (wahai Ali), يَا أُسْتَاذُ.\nHamzah washal pada ال/اسم/ابن tidak dibaca saat tersambung.',
+v:[['رَسُولٌ','rasul / utusan'],['مُهَنْدِسٌ','insinyur'],['شَارِعٌ','jalan'],['الْكَعْبَةُ','Ka‘bah'],['عَمٌّ','paman (dari ayah)'],['خَالٌ','paman (dari ibu)'],['مُغْلَقٌ','tertutup'],['اسْمٌ','nama'],['حَقِيبَةٌ','tas'],['تَحْتَ','di bawah'],['ابْنٌ','anak laki-laki'],['سَيَّارَةٌ','mobil'],['هُنَاكَ','di sana'],['يَا','wahai (panggilan)']],
+x:[['أَيْنَ كِتَابُ مُحَمَّدٍ؟','Di mana buku Muhammad?'],['هُوَ عَلَى الْمَكْتَبِ هُنَاكَ.','Buku itu di atas meja di sana.'],['أَيْنَ حَقِيبَةُ الْمُدَرِّسِ؟ هِيَ تَحْتَ الْمَكْتَبِ.','Di mana tas guru? Di bawah meja.'],['قَلَمُ مَنْ هَذَا يَا عَلِيُّ؟','Pena siapa ini, wahai Ali?'],['الْكَعْبَةُ بَيْتُ اللَّهِ.','Ka‘bah adalah rumah Allah.'],['اسْمُ الْوَلَدِ مُحَمَّدٌ.','Nama anak itu Muhammad.']]},
+{t:'هَذِهِ',s:'Ini (mu’annats) • لِ (milik)',note:'هَذِهِ = ini (untuk benda/orang perempuan/mu’annats).\nمَا هَذِهِ؟ هَذِهِ مِكْوَاةٌ. — مَنْ هَذِهِ؟ هَذِهِ أُخْتُ الْمُهَنْدِسِ.\nلِ = milik/kepunyaan: لِمَنْ هَذِهِ؟ هَذِهِ لِخَالِدٍ. (Milik siapa ini? Milik Khalid.)',
+v:[['هَذِهِ','ini (perempuan)'],['مِكْوَاةٌ','setrika'],['بَقَرَةٌ','sapi'],['فَلَّاحٌ','petani'],['يَدٌ','tangan'],['أُذُنٌ','telinga'],['أُمٌّ','ibu'],['ثَلَّاجَةٌ','kulkas'],['نَافِذَةٌ','jendela'],['مِلْعَقَةٌ','sendok'],['قِدْرٌ','panci'],['دَرَّاجَةٌ','sepeda'],['أَنْفٌ','hidung'],['فَمٌ','mulut'],['رِجْلٌ','kaki'],['شَايٌ','teh'],['قَهْوَةٌ','kopi'],['سَرِيعٌ','cepat'],['جِدًّا','sangat'],['عَيْنٌ','mata'],['لِ','milik / untuk']],
+x:[['هَذِهِ سَيَّارَةُ الْمُدِيرِ.','Ini mobil direktur.'],['لِمَنْ هَذِهِ؟ هَذِهِ لِخَالِدٍ.','Milik siapa ini? Milik Khalid.'],['هَذِهِ عَيْنٌ وَهَذِهِ أُذُنٌ.','Ini mata dan ini telinga.'],['هَذِهِ دَرَّاجَةُ عَمَّارٍ. هِيَ جَدِيدَةٌ.','Ini sepeda Ammar. Sepedanya baru.'],['هَذِهِ بَقَرَةُ الْفَلَّاحِ.','Ini sapi milik petani.'],['السَّاعَةُ جَمِيلَةٌ جِدًّا.','Jam itu sangat indah.']]},
+{t:'تِلْكَ',s:'Itu (mu’annats)',note:'تِلْكَ = itu (jauh, mu’annats).\nPasangan: هَذَا–ذَلِكَ (mudzakkar), هَذِهِ–تِلْكَ (mu’annats).\nMu’annats biasanya berakhiran ة: طَبِيبَةٌ، دَجَاجَةٌ، حَدِيقَةٌ.',
+v:[['تِلْكَ','itu (perempuan)'],['مُمَرِّضَةٌ','perawat (pr)'],['بَطَّةٌ','bebek'],['دَجَاجَةٌ','ayam betina'],['بَيْضَةٌ','telur'],['نَاقَةٌ','unta betina'],['مُؤَذِّنٌ','muadzin'],['حَدِيقَةٌ','taman / kebun']],
+x:[['مَنْ هَذِهِ وَمَنْ تِلْكَ؟ هَذِهِ آمِنَةُ وَتِلْكَ فَاطِمَةُ.','Siapa ini dan siapa itu? Ini Aminah dan itu Fatimah.'],['هَذِهِ طَبِيبَةٌ وَتِلْكَ مُمَرِّضَةٌ.','Ini dokter (pr) dan itu perawat.'],['ذَلِكَ دِيكٌ وَتِلْكَ دَجَاجَةٌ.','Itu ayam jantan dan itu ayam betina.'],['مَا تِلْكَ؟ تِلْكَ بَيْضَةٌ.','Apa itu? Itu telur.'],['أَتِلْكَ مَدْرَسَةٌ؟ لَا، تِلْكَ جَامِعَةٌ.','Apakah itu sekolah? Bukan, itu universitas.']]},
+{t:'لِ • أَمَامَ • خَلْفَ',s:'Kepemilikan & keterangan tempat',note:'لِ + kata benda = milik: هَذِهِ السَّيَّارَةُ لِلطَّبِيبِ. (Mobil ini milik dokter.)\nKeterangan tempat (zharaf): أَمَامَ (di depan), خَلْفَ (di belakang), تَحْتَ (di bawah) — kata setelahnya berkasrah.\nمِنْ + negara: هَذَا الطَّبِيبُ مِنْ إِنْكِلْتِرَا.',
+v:[['أَمَامَ','di depan'],['خَلْفَ','di belakang'],['مُسْتَشْفًى','rumah sakit'],['أَلْمَانِيَا','Jerman'],['إِنْكِلْتِرَا','Inggris'],['سُوِيسْرَا','Swiss'],['فَرَنْسَا','Prancis'],['أَمْرِيكَا','Amerika'],['سِكِّينٌ','pisau']],
+x:[['هَذِهِ السَّيَّارَةُ لِلطَّبِيبِ.','Mobil ini milik dokter.'],['بَيْتُ التَّاجِرِ أَمَامَ الْمَسْجِدِ.','Rumah pedagang di depan masjid.'],['بَيْتُ الطَّبِيبِ خَلْفَ الْمَدْرَسَةِ.','Rumah dokter di belakang sekolah.'],['هَذَا الطَّبِيبُ مِنْ إِنْكِلْتِرَا.','Dokter ini dari Inggris.'],['ذَهَبَ حَامِدٌ إِلَى فَرَنْسَا.','Hamid pergi ke Prancis.']]},
+{t:'أَنَا • أَنْتَ • النَّعْت',s:'Kata ganti orang & sifat (na‘t)',note:'أَنَا = saya, أَنْتَ = kamu (lk), هُوَ = dia (lk).\nمَنْ أَنْتَ؟ أَنَا طَالِبٌ.\nSifat (na‘t) mengikuti kata yang disifati dalam jenis, ketentuan (ال) dan harakat:\nطَالِبٌ جَدِيدٌ (tak tentu) • الطَّالِبُ الْجَدِيدُ (tentu).\nالَّذِي = yang (mudzakkar): الطَّالِبُ الَّذِي خَرَجَ الْآنَ = pelajar yang baru keluar.',
+v:[['أَنَا','saya'],['أَنْتَ','kamu (lk)'],['تُفَّاحَةٌ','sebuah apel'],['فَاكِهَةٌ','buah-buahan'],['عُصْفُورٌ','burung pipit'],['طَائِرٌ','burung'],['لُغَةٌ','bahasa'],['سَهْلَةٌ','mudah'],['مُجْتَهِدٌ','rajin'],['كَسْلَانُ','malas'],['جَوْعَانُ','lapar'],['عَطْشَانُ','haus'],['غَضْبَانُ','marah'],['مَلْآنُ','penuh'],['شَهِيرٌ','terkenal'],['مَدِينَةٌ','kota'],['الْيَوْمَ','hari ini'],['عِنْدَ','di sisi / pada'],['لِمَاذَا','mengapa'],['كُوبٌ','gelas'],['مَكْتَبَةٌ','perpustakaan'],['الْآنَ','sekarang'],['وَزِيرٌ','menteri'],['حَادٌّ','tajam'],['الَّذِي','yang (lk)']],
+x:[['مَنْ أَنْتَ؟ أَنَا طَالِبٌ.','Siapa kamu? Saya pelajar.'],['أَأَنْتَ طَالِبٌ جَدِيدٌ؟ نَعَمْ، أَنَا طَالِبٌ جَدِيدٌ.','Apakah kamu pelajar baru? Ya, saya pelajar baru.'],['الْعَرَبِيَّةُ لُغَةٌ جَمِيلَةٌ.','Bahasa Arab adalah bahasa yang indah.'],['التُّفَّاحُ فَاكِهَةٌ لَذِيذَةٌ.','Apel adalah buah yang lezat.'],['الْعُصْفُورُ طَائِرٌ صَغِيرٌ.','Burung pipit adalah burung kecil.'],['الطَّالِبُ الَّذِي خَرَجَ الْآنَ مِنَ الْفَصْلِ مُجْتَهِدٌ.','Pelajar yang baru keluar dari kelas itu rajin.']]},
+{t:'ـي • ـكَ • ـهُ • ـهَا',s:'Dhamir muttashil & عِنْدَ / مَعَ',note:'Akhiran kepemilikan:\n• ـِي = ku: اسْمِي، لُغَتِي، أَبِي\n• ـكَ = mu (lk): اسْمُكَ، أَبُوكَ\n• ـكِ = mu (pr)\n• ـهُ = nya (lk): اسْمُهُ، أَبُوهُ\n• ـهَا = nya (pr): اسْمُهَا، أَبُوهَا\nKepemilikan: عِنْدِي سَيَّارَةٌ (aku punya mobil) • لِي أَخٌ (aku punya saudara).\nمَعَ = bersama: مَعِي زَمِيلِي.\nKhusus: أَبٌ/أَخٌ → أَبُوكَ/أَخُوكَ (nominatif), أَبِي/أَخِي.',
+v:[['اسْمُكَ','namamu (lk)'],['لُغَتُكَ','bahasamu (lk)'],['أَبُوكَ','ayahmu'],['أُمُّكَ','ibumu'],['عِنْدِي','aku punya (di sisiku)'],['مَعِي','bersamaku'],['زَمِيلٌ','teman sekelas'],['فَتًى','pemuda'],['مَعَ','bersama'],['وَاحِدٌ','satu'],['زَوْجٌ','suami'],['طِفْلٌ','anak kecil'],['الْكُوَيْتُ','Kuwait'],['لِي','aku punya / bagiku'],['لَكَ','kamu punya (lk)'],['لَهُ','dia (lk) punya'],['لَهَا','dia (pr) punya']],
+x:[['مَا اسْمُكَ؟ اسْمِي مُحَمَّدٌ.','Siapa namamu? Namaku Muhammad.'],['أَعِنْدَكَ سَيَّارَةٌ؟ لَا، مَا عِنْدِي سَيَّارَةٌ.','Apakah kamu punya mobil? Tidak, aku tidak punya.'],['عِنْدَ حَمْزَةَ سَيَّارَةٌ.','Hamzah punya mobil.'],['أَيْنَ أَبُوكَ؟ أَبِي فِي الْكُوَيْتِ.','Di mana ayahmu? Ayahku di Kuwait.'],['لِي أَخٌ وَاحِدٌ وَأُخْتٌ وَاحِدَةٌ.','Aku punya satu saudara laki-laki dan satu saudari.'],['خَرَجَ مُحَمَّدٌ مَعَ زَمِيلِهِ.','Muhammad keluar bersama temannya.']]},
+{t:'بَيْتِي',s:'Teks bacaan • فِيهِ/فِيهَا • أُحِبُّ',note:'Teks bacaan “بَيْتِي” (rumahku) memakai banyak dhamir ـِي dan kalimat deskriptif.\nفِيهِ = di dalamnya (lk), فِيهَا = di dalamnya (pr): مَنْ فِي هَذَا الْبَيْتِ؟ فِيهِ حَامِدٌ.\nأُحِبُّ = aku mencintai/menyukai: أُحِبُّ أَبِي وَأُمِّي.',
+v:[['أُحِبُّ','aku suka / cinta'],['فِيهِ','di dalamnya (lk)'],['فِيهَا','di dalamnya (pr)'],['أُسْتَاذٌ','guru / profesor'],['النَّبِيُّ','Nabi']],
+x:[['هَذَا بَيْتِي. بَيْتِي أَمَامَ الْمَسْجِدِ.','Ini rumahku. Rumahku di depan masjid.'],['فِيهِ حَدِيقَةٌ صَغِيرَةٌ.','Di dalamnya ada taman kecil.'],['هَذِهِ غُرْفَتِي. فِيهَا نَافِذَةٌ كَبِيرَةٌ.','Ini kamarku. Di dalamnya ada jendela besar.'],['أُحِبُّ أَبِي وَأُمِّي.','Aku mencintai ayah dan ibuku.'],['أُحِبُّ اللُّغَةَ الْعَرَبِيَّةَ.','Aku suka bahasa Arab.'],['مَنْ فِي الْحَقِيبَةِ؟ فِيهَا كِتَابِي وَقَلَمِي.','Apa di dalam tas? Di dalamnya ada bukuku dan penaku.']]},
+{t:'التَّحِيَّة • الْفَاعِل',s:'Salam • fi‘il madhi • الَّتِي',note:'Salam: السَّلَامُ عَلَيْكُمْ وَرَحْمَةُ اللَّهِ وَبَرَكَاتُهُ — جواب: وَعَلَيْكُمُ السَّلَامُ ...\nكَيْفَ حَالُكَ؟ (bagaimana kabarmu?) — أَنَا بِخَيْرٍ وَالْحَمْدُ لِلَّهِ.\nFi‘il madhi (kata kerja lampau) + fa‘il (pelaku) bermarfu‘: خَرَجَ مُحَمَّدٌ. Untuk pelaku perempuan tambah تْ: خَرَجَتْ آمِنَةُ.\nالَّتِي = yang (mu’annats): الْفَتَاةُ الَّتِي خَرَجَتْ.',
+v:[['كَيْفَ حَالُكَ؟','bagaimana kabarmu?'],['بِخَيْرٍ','baik-baik saja'],['الْحَمْدُ لِلَّهِ','segala puji bagi Allah'],['مُوَجِّهٌ','pembimbing'],['مُسْتَشْفَى الْوِلَادَةِ','rumah sakit bersalin'],['الْمَدْرَسَةُ الْمُتَوَسِّطَةُ','SMP'],['الَّتِي','yang (pr)'],['عَمَّةٌ','bibi (dari ayah)'],['خَالَةٌ','bibi (dari ibu)'],['فَتَاةٌ','gadis'],['جَلَسَ','(dia lk) duduk'],['شَجَرَةٌ','pohon'],['خَرَجَتْ','(dia pr) keluar'],['ذَهَبَتْ','(dia pr) pergi']],
+x:[['السَّلَامُ عَلَيْكُمْ وَرَحْمَةُ اللَّهِ وَبَرَكَاتُهُ.','Semoga keselamatan, rahmat Allah dan berkah-Nya atas kalian.'],['كَيْفَ حَالُكَ يَا أَبِي؟','Bagaimana kabarmu, wahai ayah?'],['أَنَا بِخَيْرٍ وَالْحَمْدُ لِلَّهِ.','Saya baik, alhamdulillah.'],['خَرَجَ مُحَمَّدٌ مِنَ الْبَيْتِ.','Muhammad keluar dari rumah.'],['خَرَجَتْ آمِنَةُ مِنَ الْبَيْتِ.','Aminah keluar dari rumah.'],['الْفَتَاةُ الَّتِي خَرَجَتْ مِنَ الْبَيْتِ بِنْتُ خَالِي.','Gadis yang keluar dari rumah itu anak paman (dari ibu) saya.']]},
+{t:'الْجَمْع (مُذَكَّر وَمُؤَنَّث)',s:'Jamak: هَؤُلَاءِ • هُمْ • هُنَّ',note:'هَؤُلَاءِ = ini (jamak) • هُمْ = mereka (lk) • هُنَّ = mereka (pr).\nJamak mudzakkar salim: akhiran ـُونَ: مُدَرِّسُونَ، مُسْلِمُونَ، مُجْتَهِدُونَ.\nJamak mu’annats salim: akhiran ـَاتٌ: طَالِبَاتٌ، أَخَوَاتٌ.\nJamak taksir (tak beraturan) harus dihafal: طَالِبٌ ← طُلَّابٌ، رَجُلٌ ← رِجَالٌ.\nأُولَئِكَ = itu (jamak, jauh).',
+v:[['طُلَّابٌ','pelajar-pelajar (jamak طَالِب)'],['تُجَّارٌ','pedagang (jamak تَاجِر)'],['حُجَّاجٌ','jamaah haji (jamak حَاجّ)'],['رِجَالٌ','laki-laki (jamak رَجُل)'],['كِبَارٌ','besar-besar (jamak كَبِير)'],['صِغَارٌ','kecil-kecil (jamak صَغِير)'],['طِوَالٌ','tinggi-tinggi (jamak طَوِيل)'],['أَوْلَادٌ','anak-anak (jamak وَلَد)'],['أَبْنَاءٌ','anak laki-laki (jamak ابْن)'],['أَعْمَامٌ','paman (jamak عَمّ)'],['شُيُوخٌ','syaikh (jamak شَيْخ)'],['ضُيُوفٌ','tamu (jamak ضَيْف)'],['زُمَلَاءُ','teman (jamak زَمِيل)'],['فُقَرَاءُ','orang-orang miskin (jamak فَقِير)'],['أَغْنِيَاءُ','orang-orang kaya (jamak غَنِيّ)'],['أَصْدِقَاءُ','sahabat (jamak صَدِيق)'],['أَطِبَّاءُ','dokter (jamak طَبِيب)'],['إِخْوَةٌ','saudara laki-laki (jamak أَخ)'],['مُدَرِّسُونَ','guru-guru'],['مُسْلِمُونَ','kaum muslimin'],['طَالِبَاتٌ','pelajar putri'],['نِسَاءٌ','wanita (jamak امْرَأَة)'],['زَوْجَاتٌ','istri-istri'],['هَؤُلَاءِ','mereka ini'],['هُمْ','mereka (lk)'],['هُنَّ','mereka (pr)'],['أُولَئِكَ','mereka itu'],['حُقُولٌ','ladang-ladang (jamak حَقْل)'],['النَّاسُ','manusia / orang-orang'],['الْقَرْيَةُ','desa'],['الْمَطْعَمُ','restoran'],['ضِعَافٌ','lemah-lemah (jamak ضَعِيف)'],['أَقْوِيَاءُ','kuat-kuat (jamak قَوِيّ)'],['عُلَمَاءُ','ulama / ilmuwan (jamak عَالِم)'],['آبَاءٌ','ayah-ayah (jamak أَب)'],['أُمَّهَاتٌ','ibu-ibu (jamak أُمّ)'],['وُزَرَاءُ','menteri-menteri (jamak وَزِير)']],
+x:[['مَنْ هَؤُلَاءِ الْفِتْيَةُ الطِّوَالُ يَا عَلِيُّ؟ هُمْ طُلَّابٌ جُدُدٌ.','Siapa pemuda-pemuda tinggi ini, wahai Ali? Mereka pelajar baru.'],['مِنْ أَيْنَ هُمْ؟ هُمْ مِنْ أَمْرِيكَا.','Mereka dari mana? Mereka dari Amerika.'],['أَهُمْ مُجْتَهِدُونَ؟ نَعَمْ، هُمْ مُجْتَهِدُونَ.','Apakah mereka rajin? Ya, mereka rajin.'],['مَنْ هَؤُلَاءِ الْفَتَيَاتُ يَا مَرْيَمُ؟ هُنَّ زَمِيلَاتِي.','Siapa gadis-gadis ini, wahai Maryam? Mereka teman-teman sekelasku.'],['هَؤُلَاءِ إِخْوَتِي وَأُولَئِكَ أَصْدِقَائِي.','Ini saudara-saudaraku dan itu sahabat-sahabatku.'],['الرِّجَالُ الْفُقَرَاءُ وَالرِّجَالُ الْأَغْنِيَاءُ.','Laki-laki miskin dan laki-laki kaya.']]},
+{t:'نَحْنُ • أَنْتُمْ',s:'Kami/kalian • ـنَا ـكُمْ',note:'نَحْنُ = kami/kita • أَنْتُمْ = kalian (lk).\nAkhiran: ـنَا = kami: بَيْتُنَا، لُغَتُنَا • ـكُمْ = kalian: بَيْتُكُمْ، أَبُوكُمْ.\nأَيُّ = yang mana/apa: أَيُّ كُلِّيَّةٍ؟ (fakultas mana?) • مِنْ أَيِّ بَلَدٍ أَنْتَ؟\nأَهْلًا وَسَهْلًا وَمَرْحَبًا = selamat datang.',
+v:[['نَحْنُ','kami / kita'],['أَنْتُمْ','kalian (lk)'],['بَيْتُنَا','rumah kami'],['بَيْتُكُمْ','rumah kalian'],['كُلِّيَّةٌ','fakultas'],['حَفِيدٌ','cucu'],['أَهْلًا وَسَهْلًا وَمَرْحَبًا','selamat datang'],['نَصْرَانِيٌّ','Nasrani (Kristen)'],['الْيُونَانُ','Yunani'],['بَلَدٌ','negeri (jamak بِلَادٌ)'],['أَيٌّ','yang mana / apa'],['شَفَاكَ اللَّهُ','semoga Allah menyembuhkanmu'],['الْمَطَارُ','bandara'],['الْمَحْكَمَةُ','pengadilan']],
+x:[['نَحْنُ مُسْلِمُونَ.','Kami adalah muslim.'],['اللَّهُ رَبُّنَا وَالْإِسْلَامُ دِينُنَا.','Allah Tuhan kami dan Islam agama kami.'],['أَيْنَ بَيْتُكُمْ يَا إِخْوَانُ؟','Di mana rumah kalian, wahai saudara-saudara?'],['أَنْتُمْ مُدَرِّسُونَ؟ لَا، نَحْنُ أَطِبَّاءُ.','Apakah kalian guru? Bukan, kami dokter.'],['بَيْتُنَا الْجَدِيدُ قَرِيبٌ مِنَ الْمَطَارِ.','Rumah baru kami dekat bandara.'],['أَنَا فِي كُلِّيَّةِ الْهَنْدَسَةِ.','Saya di fakultas teknik.']]},
+{t:'أَنْتُنَّ • الْمَاضِي',s:'Kata ganti lengkap & lampau (ذَهَبْتُ…)',note:'Kata ganti pisah (الضمائر المنفصلة):\nهُوَ، هِيَ، أَنْتَ، أَنْتِ، أَنَا (tunggal) • هُمْ، هُنَّ، أَنْتُمْ، أَنْتُنَّ، نَحْنُ (jamak).\nFi‘il madhi dengan subjek:\nذَهَبْتُ (aku) • ذَهَبْتَ (kamu lk) • ذَهَبْتِ (kamu pr) • ذَهَبْنَا (kami)\nKata keterangan waktu: قَبْلَ (sebelum), بَعْدَ (setelah), مَتَى (kapan), كَيْفَ (bagaimana).',
+v:[['أَنْتُنَّ','kalian (pr)'],['مَتَى','kapan'],['قَبْلَ','sebelum'],['بَعْدَ','setelah'],['كَيْفَ','bagaimana'],['أُسْبُوعٌ','pekan / minggu'],['شَهْرٌ','bulan'],['صَلَاةٌ','salat'],['أَذَانٌ','azan'],['اخْتِبَارٌ','ujian'],['رَجَعَ','(dia lk) kembali'],['ذَهَبْتُ','aku pergi'],['ذَهَبْتَ','kamu (lk) pergi'],['ذَهَبْتِ','kamu (pr) pergi'],['ذَهَبْنَا','kami pergi']],
+x:[['أَيْنَ ذَهَبْتَ يَا أَخِي؟','Ke mana kamu pergi, wahai saudaraku?'],['مَتَى ذَهَبْتِ إِلَى الرِّيَاضِ؟ ذَهَبْتُ قَبْلَ أُسْبُوعٍ.','Kapan kamu (pr) pergi ke Riyadh? Aku pergi seminggu lalu.'],['ذَهَبْنَا وَرَجَعْنَا.','Kami pergi dan kami kembali.'],['ذَهَبْتُ إِلَى الْمَسْجِدِ قَبْلَ الْأَذَانِ.','Aku pergi ke masjid sebelum azan.'],['خَرَجْتُ مِنَ الْفَصْلِ بَعْدَ الدَّرْسِ.','Aku keluar kelas setelah pelajaran.'],['مَتَى اخْتِبَارُكُنَّ؟ اخْتِبَارُنَا بَعْدَ شَهْرٍ.','Kapan ujian kalian (pr)? Ujian kami sebulan lagi.']]},
+{t:'جَمْع غَيْر الْعَاقِل',s:'Jamak benda & hewan: هَذِهِ / تِلْكَ',note:'Jamak untuk benda/hewan (غير العاقل) diperlakukan seperti mu’annats tunggal:\nهَذِهِ بُيُوتٌ جَمِيلَةٌ (bukan هَؤُلَاءِ).\nSifatnya pun mu’annats tunggal: كُتُبٌ جَدِيدَةٌ.\nCatatan: untuk manusia dipakai هَؤُلَاءِ/أُولَئِكَ, untuk non-manusia هَذِهِ/تِلْكَ.',
+v:[['نُجُومٌ','bintang-bintang'],['دُرُوسٌ','pelajaran-pelajaran'],['أَقْلَامٌ','pena-pena'],['أَبْوَابٌ','pintu-pintu'],['أَنْهَارٌ','sungai-sungai'],['جِبَالٌ','gunung-gunung'],['كِلَابٌ','anjing-anjing'],['بِحَارٌ','laut-laut'],['كُتُبٌ','buku-buku'],['حُمُرٌ','keledai-keledai'],['سُرُرٌ','tempat tidur-tempat tidur'],['دَفَاتِرُ','buku tulis (jamak)'],['مَكَاتِبُ','meja tulis (jamak)'],['فَنَادِقُ','hotel-hotel'],['سَيَّارَاتٌ','mobil-mobil'],['بُيُوتٌ','rumah-rumah'],['نَهْرٌ','sungai'],['جَبَلٌ','gunung'],['بَحْرٌ','laut'],['فُنْدُقٌ','hotel'],['دَفْتَرٌ','buku tulis'],['دَرْسٌ','pelajaran']],
+x:[['هَذِهِ بُيُوتٌ جَمِيلَةٌ.','Ini rumah-rumah yang indah.'],['تِلْكَ سَيَّارَاتٌ.','Itu mobil-mobil.'],['هَذِهِ الدُّرُوسُ سَهْلَةٌ.','Pelajaran-pelajaran ini mudah.'],['تِلْكَ الْجِبَالُ بَعِيدَةٌ.','Gunung-gunung itu jauh.'],['أَيْنَ الْكُتُبُ الْجَدِيدَةُ؟','Di mana buku-buku baru itu?'],['هَذِهِ أَقْلَامُ الْمُدَرِّسِ.','Ini pena-pena milik guru.']]},
+{t:'لُغَات كَثِيرَة',s:'Latihan jamak benda • أَسْمَاء الْإِشَارَة',note:'Rangkuman kata tunjuk:\n• Dekat: هَذَا (lk) / هَذِهِ (pr) / هَؤُلَاءِ (jamak manusia)\n• Jauh: ذَلِكَ (lk) / تِلْكَ (pr) / أُولَئِكَ (jamak manusia)\nUntuk jamak non-manusia: هَذِهِ (dekat), تِلْكَ (jauh).\nSifat jamak non-manusia = mu’annats tunggal: النُّجُومُ جَمِيلَةٌ.',
+v:[['شَرِكَةٌ','perusahaan (jamak شَرِكَاتٌ)'],['رَخِيصٌ','murah'],['قُمْصَانٌ','kemeja-kemeja'],['لُغَاتٌ','bahasa-bahasa'],['مُدِيرُ الشَّرِكَةِ','direktur perusahaan']],
+x:[['أَبْوَابُ الْمَسْجِدِ مَفْتُوحَةٌ.','Pintu-pintu masjid terbuka.'],['لِمَنْ هَذِهِ الْبُيُوتُ الْجَدِيدَةُ؟ هِيَ لِمُدِيرِ الشَّرِكَةِ.','Milik siapa rumah-rumah baru ini? Milik direktur perusahaan.'],['النُّجُومُ جَمِيلَةٌ.','Bintang-bintang itu indah.'],['فِي الْهِنْدِ لُغَاتٌ كَثِيرَةٌ.','Di India ada banyak bahasa.'],['السَّاعَةُ الْيَابَانِيَّةُ رَخِيصَةٌ.','Jam Jepang itu murah.'],['فِي هَذَا الشَّارِعِ فَنَادِقُ كَبِيرَةٌ.','Di jalan ini ada hotel-hotel besar.']]},
+{t:'الْمُثَنَّى • كَمْ',s:'Bentuk dual & “berapa?”',note:'Mutsanna (dua): tambah ـَانِ (nominatif) pada kata: كِتَابٌ ← كِتَابَانِ؛ أُخْتٌ ← أُخْتَانِ (mu’annats: ة → تَانِ: نَافِذَةٌ ← نَافِذَتَانِ).\nهَذَانِ (dua ini, lk) • هَاتَانِ (dua ini, pr) • هُمَا (mereka berdua).\nكَمْ = berapa banyak; benda sesudahnya tunggal & manshub (tamyiz): كَمْ كِتَابًا عِنْدَكَ؟\nJawab: عِنْدِي كِتَابَانِ.',
+v:[['كَمْ','berapa'],['أَخَوَانِ','dua saudara laki-laki'],['أُخْتَانِ','dua saudari'],['كِتَابَانِ','dua buku'],['نَافِذَتَانِ','dua jendela'],['مَتْجَرَانِ','dua toko'],['عِيدٌ','hari raya'],['عِيدَانِ','dua hari raya'],['عِيدُ الْفِطْرِ','Idul Fitri'],['عِيدُ الْأَضْحَى','Idul Adha'],['عَجَلَةٌ','roda (jamak عَجَلَاتٌ)'],['رِيَالٌ','riyal (jamak رِيَالَاتٌ)'],['مِسْطَرَةٌ','penggaris (jamak مَسَاطِرُ)'],['رَكْعَةٌ','rakaat (jamak رَكَعَاتٌ)'],['حَيٌّ','lingkungan (jamak أَحْيَاءٌ)'],['هَذَانِ','dua ini (lk)'],['هَاتَانِ','dua ini (pr)'],['هُمَا','mereka berdua']],
+x:[['كَمْ أَخًا لَكَ يَا مُحَمَّدُ؟ لِي أَخٌ وَاحِدٌ.','Berapa saudara laki-laki kamu, Muhammad? Aku punya satu.'],['كَمْ أُخْتًا لَكَ؟ لِي أُخْتَانِ.','Berapa saudari kamu? Aku punya dua.'],['كَمْ عَجَلَةً لِلدَّرَّاجَةِ يَا حَامِدُ؟ لَهَا عَجَلَتَانِ.','Berapa roda sepeda itu, Hamid? Dua roda.'],['كَمْ عِيدًا فِي السَّنَةِ؟ فِي السَّنَةِ عِيدَانِ.','Berapa hari raya dalam setahun? Ada dua.'],['كَمْ نَافِذَةً فِي غُرْفَتِكَ؟ فِيهَا نَافِذَتَانِ.','Berapa jendela di kamarmu? Ada dua.'],['مَنْ هَذَانِ الدَّفْتَرَانِ؟ هُمَا لِي.','Milik siapa kedua buku tulis ini? Keduanya milikku.']]},
+{t:'الْعَدَد ٣–١٠',s:'Bilangan 3–10 + benda jamak',note:'Bilangan 3–10: benda yang dihitung JAMAK dan majrur (idhafah): ثَلَاثَةُ طُلَّابٍ، عَشَرَةُ كُتُبٍ.\nUntuk benda mudzakkar, bilangan memakai ة: ثَلَاثَةٌ، أَرْبَعَةٌ، خَمْسَةٌ، سِتَّةٌ، سَبْعَةٌ، ثَمَانِيَةٌ، تِسْعَةٌ، عَشَرَةٌ.\nKata “berapa” + jamak: كَمْ طَالِبًا؟ → ثَلَاثَةُ طُلَّابٍ.',
+v:[['ثَلَاثَةٌ','tiga'],['أَرْبَعَةٌ','empat'],['خَمْسَةٌ','lima'],['سِتَّةٌ','enam'],['سَبْعَةٌ','tujuh'],['ثَمَانِيَةٌ','delapan'],['تِسْعَةٌ','sembilan'],['عَشَرَةٌ','sepuluh'],['ثَمَنٌ','harga'],['نِصْفٌ','setengah'],['حَافِلَةٌ','bus'],['سُؤَالٌ','pertanyaan (jamak أَسْئِلَةٌ)'],['يَوْمٌ','hari (jamak أَيَّامٌ)'],['قِرْشٌ','qirsy (jamak قُرُوشٌ)'],['رَاكِبٌ','penumpang (jamak رُكَّابٌ)'],['قَدِيمٌ','lama (jamak قُدَامَى)'],['جَيْبٌ','saku (jamak جُيُوبٌ)'],['مُخْتَلِفَةٌ','berbeda-beda'],['أُورُبَّا','Eropa'],['مَالِيزِيَا','Malaysia']],
+x:[['فِي فَصْلِنَا عَشَرَةُ طُلَّابٍ.','Di kelas kami ada sepuluh pelajar.'],['عِنْدِي ثَلَاثَةُ كُتُبٍ.','Aku punya tiga buku.'],['فِي الْأُسْبُوعِ سَبْعَةُ أَيَّامٍ.','Dalam seminggu ada tujuh hari.'],['لِلسَّيَّارَةِ أَرْبَعَةُ أَبْوَابٍ.','Mobil itu punya empat pintu.'],['كَمْ ثَمَنُ هَذَا الْكِتَابِ؟ ثَمَنُهُ سَبْعَةُ رِيَالَاتٍ وَنِصْفٌ.','Berapa harga buku ini? Tujuh setengah riyal.'],['فِيهِ خَمْسَةُ طُلَّابٍ مِنْ إِنْكِلْتِرَا وَثَمَانِيَةٌ مِنْ أَلْمَانِيَا.','Di situ ada lima pelajar dari Inggris dan delapan dari Jerman.']]},
+{t:'الْعَدَد لِلْمُؤَنَّث',s:'Bilangan untuk benda mu’annats',note:'Aturan kebalikan: untuk benda MU’ANNATS, bilangan 3–10 TANPA ة:\nثَلَاثُ طَالِبَاتٍ، أَرْبَعُ أَخَوَاتٍ، خَمْسُ مَجَلَّاتٍ، سِتُّ غُرَفٍ، عَشْرُ حَافِلَاتٍ.\nBandingkan: ثَلَاثَةُ إِخْوَةٍ (lk) ↔ ثَلَاثُ أَخَوَاتٍ (pr).',
+v:[['ثَلَاثُ','tiga (untuk mu’annats)'],['أَرْبَعُ','empat (mu’annats)'],['خَمْسُ','lima (mu’annats)'],['سِتُّ','enam (mu’annats)'],['سَبْعُ','tujuh (mu’annats)'],['ثَمَانِي','delapan (mu’annats)'],['تِسْعُ','sembilan (mu’annats)'],['عَشْرُ','sepuluh (mu’annats)'],['مَجَلَّةٌ','majalah (jamak مَجَلَّاتٌ)'],['حَرْفٌ','huruf (jamak حُرُوفٌ)'],['كَلِمَةٌ','kata (jamak كَلِمَاتٌ)'],['إِنْدُونِيسِيَا','Indonesia']],
+x:[['لِي ثَلَاثُ أَخَوَاتٍ.','Aku punya tiga saudari.'],['لِي خَمْسَةُ إِخْوَةٍ وَأَرْبَعُ أَخَوَاتٍ.','Aku punya lima saudara laki-laki dan empat saudari.'],['فِي بَيْتِنَا ثَلَاثُ غُرَفٍ.','Di rumah kami ada tiga kamar.'],['فِي هَذِهِ الْكَلِمَةِ خَمْسَةُ حُرُوفٍ.','Dalam kata ini ada lima huruf.'],['عِنْدِي ثَلَاثُ مَجَلَّاتٍ.','Aku punya tiga majalah.'],['فِي فَصْلِنَا خَمْسُ طَالِبَاتٍ مِنَ الصِّينِ.','Di kelas kami ada lima pelajar putri dari Cina.']]},
+{t:'مَدْرَسَتِي',s:'Teks bacaan: sekolahku',note:'Teks bacaan “مَدْرَسَتِي” menggabungkan semua pola: sifat, idhafah, jamak, dan bilangan.\nBaca keras-keras; perhatikan harakat akhir kata.\nKosakata baru: اللَّوْنُ (warna), الْقِبْلَةُ (kiblat), ذَاكَ (itu), لَكِنْ (tetapi).',
+v:[['مَكْتَبٌ','meja / kantor (jamak مَكَاتِبُ)'],['كُرْسِيٌّ','kursi (jamak كَرَاسِيُّ)'],['لَوْنٌ','warna (jamak أَلْوَانٌ)'],['قِبْلَةٌ','kiblat'],['ذَاكَ','itu (lk, jauh)'],['لَكِنْ','tetapi'],['وَاسِعٌ','luas'],['سَبُّورَةٌ','papan tulis'],['كُرَّاسَةٌ','buku tulis']],
+x:[['هَذِهِ مَدْرَسَتِي. هِيَ قَرِيبَةٌ مِنَ الْمَسْجِدِ.','Ini sekolahku. Dekat dengan masjid.'],['فِي الْمَدْرَسَةِ فُصُولٌ كَثِيرَةٌ.','Di sekolah ada banyak kelas.'],['فِي فَصْلِنَا عَشَرَةُ طُلَّابٍ. هُمْ مِنْ بِلَادٍ مُخْتَلِفَةٍ.','Di kelas kami ada sepuluh pelajar. Mereka dari negeri-negeri yang berbeda.'],['لُغَاتُهُمْ مُخْتَلِفَةٌ وَأَلْوَانُهُمْ مُخْتَلِفَةٌ.','Bahasa mereka berbeda dan warna kulit mereka berbeda.'],['رَبُّهُمْ وَاحِدٌ وَقِبْلَتُهُمْ وَاحِدَةٌ.','Tuhan mereka satu dan kiblat mereka satu.'],['الْمُسْلِمُونَ إِخْوَةٌ.','Kaum muslimin bersaudara.']]},
+{t:'الْأَلْوَان',s:'Warna (أَفْعَل) • قَالَ / قَالَتْ',note:'Warna dasar mudzakkar berwazan أَفْعَلُ: أَحْمَرُ، أَزْرَقُ، أَخْضَرُ، أَسْوَدُ، أَصْفَرُ، أَبْيَضُ.\nPola أَفْعَلُ tidak bertanwin (mamnu‘ minash-sharf): هَذَا قَلَمٌ أَحْمَرُ.\nقَالَ = (dia lk) berkata • قَالَتْ = (dia pr) berkata.\nJamak benda: مِفْتَاحٌ ← مَفَاتِيحُ، مِنْدِيلٌ ← مَنَادِيلُ.',
+v:[['أَحْمَرُ','merah'],['أَزْرَقُ','biru'],['أَخْضَرُ','hijau'],['أَسْوَدُ','hitam'],['أَصْفَرُ','kuning'],['أَبْيَضُ','putih'],['قَالَ','(dia lk) berkata'],['قَالَتْ','(dia pr) berkata'],['مَفَاتِيحُ','kunci-kunci'],['مَنَادِيلُ','saputangan (jamak)'],['كَثِيرَةٌ','banyak'],['قَلِيلَةٌ','sedikit']],
+x:[['هَذَا قَلَمٌ أَحْمَرُ وَهَذَا قَلَمٌ أَزْرَقُ.','Ini pena merah dan ini pena biru.'],['هَذَا قَلَمٌ أَخْضَرُ وَهَذَا قَلَمٌ أَسْوَدُ وَهَذَا قَلَمٌ أَصْفَرُ.','Ini pena hijau, ini hitam, dan ini kuning.'],['قَالَ يُوسُفُ: عِنْدِي خَمْسَةُ أَقْلَامٍ.','Yusuf berkata: aku punya lima pena.'],['قَالَتْ زَيْنَبُ: عِنْدِي مَنَادِيلُ كَثِيرَةٌ.','Zainab berkata: aku punya banyak saputangan.'],['فِي بَلَدِنَا مَسَاجِدُ كَثِيرَةٌ وَفَنَادِقُ قَلِيلَةٌ.','Di negeri kami ada banyak masjid dan sedikit hotel.'],['حَامِدٌ طَبِيبٌ وَزَوْجَتُهُ مُدَرِّسَةٌ.','Hamid seorang dokter dan istrinya seorang guru.']]},
+{t:'الْمَمْنُوع مِنَ الصَّرْف',s:'Isim tanpa tanwin • nama kota & orang',note:'Sebagian isim tidak menerima tanwin dan kasrah (hanya fathah saat majrur):\n• Nama perempuan & kota: زَيْنَبُ، فَاطِمَةُ، مَكَّةُ، جُدَّةُ، بَغْدَادُ\n• Nama asing: لُنْدُنُ، بَارِيسُ، بَاكِسْتَانُ، إِبْرَاهِيمُ\n• Wazan أَفْعَلُ (أَحْمَدُ، أَكْبَرُ) & nama berakhiran ـان (عُثْمَانُ)\n• Jamak taksir pola مَفَاعِلُ: مَسَاجِدُ، مَدَارِسُ، مَفَاتِيحُ\nContoh: ذَهَبَ أَحْمَدُ إِلَى مَكَّةَ (bukan مَكَّةِ).',
+v:[['فِنْجَانٌ','cangkir (jamak فَنَاجِينُ)'],['مَدْرَسَةٌ','sekolah (jamak مَدَارِسُ)'],['مَسْجِدٌ','masjid (jamak مَسَاجِدُ)'],['دَقِيقَةٌ','menit (jamak دَقَائِقُ)'],['مَكَّةُ','Makkah'],['جُدَّةُ','Jeddah'],['بَغْدَادُ','Baghdad'],['لُنْدُنُ','London'],['بَارِيسُ','Paris'],['بَاكِسْتَانُ','Pakistan'],['إِسْطَنْبُولُ','Istanbul'],['الطَّائِفُ','Thaif'],['الرِّيَاضُ','Riyadh']],
+x:[['ذَهَبَ أَحْمَدُ إِلَى مَكَّةَ.','Ahmad pergi ke Makkah.'],['خَرَجَ إِسْحَاقُ قَبْلَ خَمْسِ دَقَائِقَ.','Ishaq keluar lima menit yang lalu.'],['الْكَعْبَةُ فِي مَكَّةَ.','Ka‘bah ada di Makkah.'],['أَنَا مِنْ بَاكِسْتَانَ.','Saya dari Pakistan.'],['فِي إِسْطَنْبُولَ مَسَاجِدُ كَثِيرَةٌ.','Di Istanbul ada banyak masjid.'],['عِنْدِي خَمْسَةُ مَفَاتِيحَ.','Aku punya lima kunci.']]}
+];
+
+/* ===== STATE ===== */
+const KEY='dl1_state_v1';
+let S={box:{},opt:{harakat:true,size:1,hideMeaning:false},seen:{}};
+try{const r=localStorage.getItem(KEY);if(r){const o=JSON.parse(r);S=Object.assign(S,o);S.opt=Object.assign({harakat:true,size:1,hideMeaning:false},o.opt||{});}}catch(e){}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}}
+const W=[];L.forEach((l,i)=>{l.n=i+1;l.w=l.v.map((p,j)=>{const w={id:(i+1)+'-'+j,ar:p[0],id_:p[1],l:i+1};W.push(w);return w;});});
+const byId={};W.forEach(w=>byId[w.id]=w);
+const box=w=>S.box[w.id]||0;
+const strip=s=>s.replace(/[ً-ْٰـ]/g,'');
+const A=s=>S.opt.harakat?s:strip(s);
+const mix=s=>s.replace(/[\u0600-\u06FF](?:[\u0600-\u06FF\s]*[\u0600-\u06FF])?/g,m=>'<span class="mx" dir="rtl">'+m+'</span>');
+const M=s=>mix(A(s));
+const $=s=>document.querySelector(s);
+const app=$('#app');
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
+let toastT;
+function toast(m){let e=document.getElementById('toast');if(!e){e=document.createElement('div');e.id='toast';e.style.cssText='position:fixed;left:12px;right:12px;bottom:16px;max-width:520px;margin:0 auto;background:#23211c;color:#fff;padding:12px 14px;border-radius:12px;font-size:14px;z-index:20;box-shadow:0 4px 14px rgba(0,0,0,.25)';document.body.appendChild(e);}e.textContent=m;e.style.display='block';e.onclick=()=>{e.style.display='none';};clearTimeout(toastT);toastT=setTimeout(()=>{e.style.display='none';},6000);}
+function arVoice(){try{const v=speechSynthesis.getVoices()||[];return v.find(x=>/^ar([-_]|$)/i.test(x.lang))||v.find(x=>/arab/i.test(x.name))||null;}catch(e){return null;}}
+try{if(window.speechSynthesis)speechSynthesis.onvoiceschanged=()=>{};}catch(e){}
+function voiceStatus(){
+  if(!('speechSynthesis' in window)||typeof SpeechSynthesisUtterance==='undefined')return 'Browser ini tidak mendukung fitur suara. Coba buka di Chrome/Safari/Edge.';
+  const v=arVoice();
+  if(!v)return 'Tidak ada suara Arab di perangkat ini. Android: Pengaturan → Bahasa → Text-to-speech → pasang data suara Arab. Windows: Pengaturan → Waktu & Bahasa → Bicara → tambah suara Arab. iPhone/Mac: Pengaturan → Aksesibilitas → Konten Lisan → Suara → Arab.';
+  return 'OK: memakai suara "'+v.name+'" ('+v.lang+').';
+}
+let warned=false;
+function warnVoice(quiet){if(quiet)return;if(warned){toast('Suara Arab belum tersedia di perangkat ini. Lihat ⚙ Pengaturan → Tes suara.');}else{warned=true;toast(voiceStatus());}}
+function speak(t,quiet){
+  try{
+    if(!('speechSynthesis' in window)||typeof SpeechSynthesisUtterance==='undefined'){warnVoice(quiet);return;}
+    const v=arVoice();
+    if(!v){warnVoice(quiet);return;}
+    speechSynthesis.cancel();
+    const u=new SpeechSynthesisUtterance(t);u.voice=v;u.lang=v.lang||'ar-SA';u.rate=.8;
+    u.onerror=ev=>{if(ev&&ev.error&&ev.error!=='canceled'&&ev.error!=='interrupted')toast('Suara gagal diputar ('+ev.error+'). Mungkin diblokir oleh browser/aplikasi ini; coba buka halaman ini langsung di browser.');};
+    speechSynthesis.speak(u);
+  }catch(e){toast('Suara tidak bisa diputar di sini: '+(e&&e.message||e));}
+}
+function mastered(l){return l.w.filter(w=>box(w)>=3).length;}
+function setBox(w,correct){const b=box(w);S.box[w.id]=correct?Math.min(4,b+1):0;save();}
+document.documentElement.style.fontSize=(16*S.opt.size)+'px';
+
+/* ===== ROUTER (hash: #beranda, #ulang, #l3, #l3-kosakata ...) ===== */
+function route(){
+  const h=(location.hash||'#beranda').slice(1);
+  let m;
+  if(m=h.match(/^l(\d+)(?:-([a-z]+))?$/)){const n=+m[1];if(n>=1&&n<=L.length)return lesson(n,m[2]||'materi');}
+  if(h==='ulang')return review();
+  if(h==='pengaturan')return settings();
+  return home();
+}
+window.addEventListener('hashchange',()=>{route();window.scrollTo(0,0);});
+$('#hb').onclick=()=>{location.hash='beranda';};
+$('#sb').onclick=()=>{location.hash='pengaturan';};
+
+/* ===== HOME ===== */
+function home(){
+  const tot=W.length,m=W.filter(w=>box(w)>=3).length,learn=W.filter(w=>box(w)>0).length;
+  const weak=W.filter(w=>(S.box[w.id]!==undefined)&&box(w)<2).length;
+  app.innerHTML=`
+  <div class="stat"><div><b>${L.length}</b><span>pelajaran</span></div><div><b>${tot}</b><span>kata</span></div><div><b>${m}</b><span>sudah hafal</span></div><div><b>${Math.round(m/tot*100)}%</b><span>kemajuan</span></div></div>
+  <div class="card row"><div style="flex:1"><b>Ulangan campuran</b><div class="hint">Latih kata dari semua pelajaran, yang lemah didahulukan.</div></div><a class="btn" href="#ulang">Mulai</a></div>
+  <input type="search" id="q" placeholder="Cari kata (Arab atau Indonesia)…">
+  <div id="res"></div>
+  <div id="list" class="grid" style="margin-top:12px">${L.map(l=>`<a class="card lc" href="#l${l.n}"><div class="n">Pelajaran ${l.n}</div><div class="ar">${A(l.t)}</div><div class="t">${M(l.s)}</div><div class="bar"><i style="width:${Math.round(mastered(l)/l.w.length*100)}%"></i></div></a>`).join('')}</div>
+  <div class="credit">Berdasarkan <span class="ar">دروس اللغة العربية لغير الناطقين بها</span> Jilid 1 — Dr. V. ‘Abdur-Rahim, Universitas Islam Madinah. Aplikasi ini hanya alat bantu belajar; rujuk bukunya untuk gambar dan latihan lengkap.</div>`;
+  $('#q').oninput=e=>{
+    const q=e.target.value.trim();const r=$('#res');
+    if(!q){r.innerHTML='';$('#list').style.display='';return;}
+    $('#list').style.display='none';
+    const qs=strip(q),ql=q.toLowerCase();
+    const f=W.filter(w=>strip(w.ar).includes(qs)||w.id_.toLowerCase().includes(ql)).slice(0,40);
+    r.innerHTML=f.length?`<div class="card">${f.map(w=>`<div class="wl"><span class="dot b${box(w)}"></span><span class="ar" data-s="${w.id}">${A(w.ar)}</span><span class="m">${M(w.id_)} <span class="hint">· P${w.l}</span></span></div>`).join('')}</div>`:'<div class="card hint">Tidak ditemukan.</div>';
+    r.querySelectorAll('[data-s]').forEach(el=>el.onclick=()=>speak(byId[el.dataset.s].ar));
+  };
+}
+
+/* ===== LESSON ===== */
+function tabsHtml(n,cur){const t=[['materi','Materi'],['kosakata','Kosakata'],['kartu','Kartu'],['kuis','Kuis']];return `<div class="tabs">${t.map(([k,v])=>`<a href="#l${n}-${k}" class="${k===cur?'on':''}">${v}</a>`).join('')}</div>`;}
+function lesson(n,tab){
+  const l=L[n-1];
+  const head=`<div class="row" style="justify-content:space-between"><a href="#beranda" class="hint">← Semua pelajaran</a><span class="hint">${mastered(l)}/${l.w.length} hafal</span></div><h2>Pelajaran ${n} · <span class="ar" style="font-size:1.3em">${A(l.t)}</span></h2><div class="hint" style="margin-bottom:6px">${M(l.s)}</div>${tabsHtml(n,tab)}`;
+  if(tab==='kosakata'){
+    app.innerHTML=head+`<div class="card ${S.opt.hideMeaning?'hide':''}" id="vl">${l.w.map(w=>`<div class="wl"><span class="dot b${box(w)}"></span><span class="ar" data-s="${w.id}">${A(w.ar)}</span><span class="m">${M(w.id_)}</span></div>`).join('')}</div><div class="hint">Ketuk kata Arab untuk mendengarkan (jika perangkat mendukung). Titik hijau = sudah hafal.</div><div class="row" style="margin-top:10px"><button class="btn sec" id="tm">${S.opt.hideMeaning?'Tampilkan arti':'Sembunyikan arti (tes diri)'}</button></div>`;
+    app.querySelectorAll('[data-s]').forEach(el=>el.onclick=()=>speak(byId[el.dataset.s].ar));
+    $('#tm').onclick=()=>{S.opt.hideMeaning=!S.opt.hideMeaning;save();lesson(n,tab);};
+  }else if(tab==='kartu'){cards(l.w,head,()=>lesson(n,'kartu'));}
+  else if(tab==='kuis'){quiz(l.w,head,()=>lesson(n,'kuis'));}
+  else{
+    app.innerHTML=head+`<div class="card"><h3 style="margin-top:0">Pokok pelajaran</h3><div class="note">${M(l.note)}</div></div><div class="card"><h3 style="margin-top:0">Contoh kalimat</h3>${l.x.map(s=>`<div class="sent"><div class="ar" data-t="${encodeURIComponent(s[0])}">${A(s[0])}</div><div class="m">${s[1]}</div></div>`).join('')}</div><div class="row"><a class="btn" href="#l${n}-kosakata">Lanjut: Kosakata →</a>${n<L.length?`<a class="btn sec" href="#l${n+1}">Pelajaran berikutnya</a>`:''}</div>`;
+    app.querySelectorAll('[data-t]').forEach(el=>el.onclick=()=>speak(decodeURIComponent(el.dataset.t)));
+  }
+}
+
+/* ===== FLASHCARDS ===== */
+function cards(words,head,again){
+  const seenAr={};
+  const q=shuffle(words).sort((a,b)=>box(a)-box(b)).filter(x=>seenAr[x.ar]?false:(seenAr[x.ar]=true)).slice(0,20);
+  let i=0,flip=false,know=0,rev=Math.random()<0;
+  const pre=head||`<h2>Kartu</h2>`;
+  function draw(){
+    if(i>=q.length){app.innerHTML=pre+`<div class="card" style="text-align:center"><h2>Selesai!</h2><p>Hafal: <b>${know}</b> dari ${q.length} kartu.</p><div class="row" style="justify-content:center"><button class="btn" id="ag">Ulangi</button><a class="btn sec" href="#beranda">Beranda</a></div></div>`;$('#ag').onclick=again;return;}
+    const w=q[i];
+    app.innerHTML=pre+`<div class="hint" style="text-align:center">Kartu ${i+1} / ${q.length} · ketuk kartu untuk membalik</div><div class="card fc" id="fc">${!flip?`<div class="ar">${A(w.ar)}</div><div class="hint" style="margin-top:12px">🔊 ketuk ikon di bawah untuk mendengar</div>`:`<div class="ar" style="font-size:34px">${A(w.ar)}</div><div class="m" style="margin-top:10px">${M(w.id_)}</div>`}</div><div class="row" style="justify-content:center"><button class="btn sec" id="sp">🔊 Dengar</button>${flip?`<button class="btn warn" id="no">Belum hafal</button><button class="btn" id="yes">Hafal ✓</button>`:`<button class="btn" id="sh">Lihat arti</button>`}</div>`;
+    $('#fc').onclick=()=>{flip=!flip;draw();};
+    $('#sp').onclick=()=>speak(w.ar);
+    if(flip){$('#no').onclick=()=>{setBox(w,false);i++;flip=false;draw();};$('#yes').onclick=()=>{setBox(w,true);know++;i++;flip=false;draw();};}
+    else $('#sh').onclick=()=>{flip=true;draw();};
+  }
+  draw();
+}
+
+/* ===== QUIZ ===== */
+function quiz(words,head,again){
+  const pool=W;
+  const seenAr={};
+  const qs=shuffle(words).sort((a,b)=>box(a)-box(b)).filter(x=>seenAr[x.ar]?false:(seenAr[x.ar]=true)).slice(0,10);
+  let i=0,score=0,done=false;
+  const pre=head||`<h2>Kuis</h2>`;
+  function draw(){
+    if(i>=qs.length){const pct=Math.round(score/qs.length*100);app.innerHTML=pre+`<div class="card" style="text-align:center"><h2>Skor: ${score} / ${qs.length}</h2><p>${pct>=80?'Mantap! Lanjut ke pelajaran berikutnya.':pct>=50?'Lumayan. Ulangi sekali lagi untuk memantapkan.':'Perlu diulang: pelajari lagi kosakata dan kartunya.'}</p><div class="row" style="justify-content:center"><button class="btn" id="ag">Kuis baru</button><a class="btn sec" href="#beranda">Beranda</a></div></div>`;$('#ag').onclick=again;return;}
+    const w=qs[i];const dir=i%2===0?'ar2id':'id2ar';
+    const base0=x=>x.id_.replace(/\s*\(.*\)\s*$/,'').toLowerCase();
+    const cand=shuffle(pool.filter(x=>x.id!==w.id&&strip(x.ar)!==strip(w.ar)&&base0(x)!==base0(w)&&(x.l===w.l||Math.random()<.35)));
+    const dis=[],usedAr={},usedM={};
+    for(const x of cand){const ka=strip(x.ar),km=base0(x);if(usedAr[ka]||usedM[km])continue;usedAr[ka]=usedM[km]=1;dis.push(x);if(dis.length===3)break;}
+    const opts=shuffle([w,...dis]);
+    done=false;
+    app.innerHTML=pre+`<div class="hint" style="text-align:center">Soal ${i+1} / ${qs.length} · skor ${score}</div><div class="card"><div class="hint" style="text-align:center">${dir==='ar2id'?'Apa arti kata ini?':'Mana kata Arab untuk:'}</div><div class="q ${dir==='ar2id'?'ar':'id'}">${dir==='ar2id'?A(w.ar):w.id_}</div>${dir==='ar2id'?'<div style="text-align:center"><button class="btn sec" id="sp">🔊</button></div>':''}<div class="opts">${opts.map(o=>`<div class="opt ${dir==='id2ar'?'ar':''}" data-i="${o.id}">${dir==='ar2id'?M(o.id_):A(o.ar)}</div>`).join('')}</div><div id="fb" style="margin-top:12px;text-align:center"></div></div>`;
+    if($('#sp'))$('#sp').onclick=()=>speak(w.ar);
+    app.querySelectorAll('.opt').forEach(el=>el.onclick=()=>{
+      if(done)return;done=true;
+      const ok=el.dataset.i===w.id;
+      if(ok){score++;el.classList.add('ok');}else{el.classList.add('no');app.querySelectorAll('.opt').forEach(o=>{if(o.dataset.i===w.id)o.classList.add('ok');});}
+      setBox(w,ok);
+      $('#fb').innerHTML=`<div class="${ok?'':'hint'}" style="margin-bottom:8px"><span class="ar" style="font-size:24px">${A(w.ar)}</span> = ${M(w.id_)}</div><button class="btn" id="nx">${i+1>=qs.length?'Lihat skor':'Lanjut →'}</button>`;
+      speak(w.ar,true);
+      $('#nx').onclick=()=>{i++;draw();};
+    });
+  }
+  draw();
+}
+
+/* ===== REVIEW (campuran) ===== */
+function review(){
+  const seen=W.filter(w=>S.box[w.id]!==undefined);
+  const base=seen.length>=10?seen:W;
+  const head=`<div class="row"><a href="#beranda" class="hint">← Beranda</a></div><h2>Ulangan campuran</h2><div class="tabs"><a href="#ulang" class="on">Pilih mode</a></div>`;
+  app.innerHTML=head+`<div class="card"><p>${seen.length>=10?`Memakai ${seen.length} kata yang pernah kamu latih (yang lemah didahulukan).`:'Belum banyak kata yang dilatih, jadi diambil dari semua pelajaran.'}</p><div class="row"><button class="btn" id="rc">Kartu (20)</button><button class="btn sec" id="rq">Kuis (10)</button></div></div>`;
+  $('#rc').onclick=()=>cards(base,`<div class="row"><a href="#beranda" class="hint">← Beranda</a></div><h2>Ulangan: kartu</h2>`,review);
+  $('#rq').onclick=()=>quiz(base,`<div class="row"><a href="#beranda" class="hint">← Beranda</a></div><h2>Ulangan: kuis</h2>`,review);
+}
+
+/* ===== SETTINGS ===== */
+function settings(){
+  app.innerHTML=`<h2>Pengaturan</h2><div class="card">
+  <div class="set"><span>Tampilkan harakat (tanda baca)</span><button class="btn sec" id="hk">${S.opt.harakat?'Hidup':'Mati'}</button></div>
+  <div class="hint">Matikan harakat untuk melatih membaca teks gundul seperti kitab sungguhan.</div>
+  <div class="set" style="margin-top:8px"><span>Ukuran huruf</span><span><button class="btn sec" id="sm">A−</button> <button class="btn sec" id="lg">A+</button></span></div>
+  <div class="set"><span>Tes suara Arab</span><button class="btn sec" id="tv">🔊 Tes</button></div>
+  <div class="hint" id="vs"></div>
+  <div class="set"><span>Hapus semua progres</span><button class="btn warn" id="rs">Reset</button></div></div>
+  <div class="card hint">Progres tersimpan di browser ini saja (tidak sinkron antar perangkat). Fitur suara memakai suara Arab bawaan perangkat jika tersedia.</div>`;
+  $('#vs').textContent=voiceStatus();
+  $('#tv').onclick=()=>{$('#vs').textContent=voiceStatus();speak('السَّلَامُ عَلَيْكُمْ');};
+  $('#hk').onclick=()=>{S.opt.harakat=!S.opt.harakat;save();settings();};
+  $('#sm').onclick=()=>{S.opt.size=Math.max(.8,S.opt.size-.1);save();document.documentElement.style.fontSize=(16*S.opt.size)+'px';};
+  $('#lg').onclick=()=>{S.opt.size=Math.min(1.5,S.opt.size+.1);save();document.documentElement.style.fontSize=(16*S.opt.size)+'px';};
+  let armed=false;$('#rs').onclick=()=>{if(!armed){armed=true;$('#rs').textContent='Yakin? Ketuk lagi';return;}S.box={};save();location.hash='beranda';};
+}
+route();
+</script>
+</body>
+</html>
